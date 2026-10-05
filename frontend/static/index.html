@@ -428,7 +428,10 @@ form.addEventListener("submit", async (ev) => {
   b.textContent = "…";
 
   try {
-    const res = await fetch("/chat", {
+    const apiEndpoint = window.location.hostname.includes("github.io")
+      ? "https://travel-concierge-frontend-1035699641848.us-central1.run.app/chat"
+      : "/chat";
+    const res = await fetch(apiEndpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text })
